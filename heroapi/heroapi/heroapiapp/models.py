@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
 
+
 CLOTH_TYPES = (
     ('GE', 'General'),
     ('SH', 'Short'),
@@ -33,3 +34,12 @@ class Cloth(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(self.title, self.cloth_type)
+
+
+class Sound(models.Model):
+    title = models.CharField(max_length=100)
+    artist = models.CharField(max_length=100)
+    sound = models.FileField(upload_to='sounds/')
+
+    def __str__(self):
+        return '{} - {}'.format(self.title, self.artist)
