@@ -12,6 +12,9 @@ import {
 import {connect} from "react-redux";
 import * as Animatable from 'react-native-animatable';
 
+import {Navigation} from 'react-native-navigation';
+
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const bg = require("../../../assets/bg.png");
 const man = require("../../../assets/man.png");
@@ -38,6 +41,15 @@ class Splash extends Component
         {
         this.setState({HulkVisible: true})
         }, 1500);
+
+        setTimeout(() => {
+            this._populateIcons().then((values) => {
+            // Start app only if all icons are loaded
+            this.startApp(values);
+            }).catch((error) => {
+            console.error(error);
+            });
+        }, 2000);
         }
 
     render()
@@ -49,11 +61,11 @@ class Splash extends Component
 
 
                     {HulkVisible ?
-                        <Animatable.Image style={styles.bgMiddle} animation="fadeIn"  duration={1000}
+                        <Animatable.Image style={styles.bgMiddle} animation="fadeIn" duration={1000}
                                           source={hulk}></Animatable.Image>
                         :
-                        <Animatable.Image style={styles.bgMiddle}  animation="fadeOut"
-                                         duration={3000}
+                        <Animatable.Image style={styles.bgMiddle} animation="fadeOut"
+                                          duration={3000}
                                           source={man}></Animatable.Image>
                     }
 
@@ -63,10 +75,65 @@ class Splash extends Component
         );
         }
 
-    _toogle()
-        {
+    _populateIcons = () => {
+      return new Promise(function (resolve, reject) {
+        Promise.all(
+          [
+            Icon.getImageSource('ios-heart', 24),
+            Icon.getImageSource('ios-shirt', 24),
+            Icon.getImageSource('ios-musical-notes', 24)
+          ]
+        ).then((values) => {
+          resolve(values);
+        }).catch((error) => {
+          console.log(error);
+          reject(error);
+        }).done();
+      });
+    };
 
-        }
+    startApp = (values) => {
+      Navigation.startTabBasedApp({
+        tabs: [
+          {
+            label: 'Dashboard',
+            screen: 'hackaboomapp.Dashboard',
+            icon: values[0],
+            title: 'dashboard'
+          },
+          {
+            label: 'Clothes',
+            screen: 'hackaboomapp.Clothes',
+            icon: values[1],
+            title: 'clothes'
+          },
+          {
+            label: 'Music',
+            screen: 'hackaboomapp.Music',
+            icon: values[2],
+            title: 'music'
+          }
+        ],
+        tabsStyle: {
+          tabBarButtonColor: '#ffff00',
+          tabBarSelectedButtonColor: '#ff9900',
+          tabBarBackgroundColor: '#551A8B',
+          initialTabIndex: 1,
+        },
+        appStyle: {
+          orientation: 'portrait'
+        },
+        animationType: 'slide-down'
+      })
+        .then(() => {
+          null;
+        })
+        .catch((err) => {
+          console.log("Navigation is failed. Error => ", err);
+        });
+    }
+
+
     }
 
 function bindAction(dispatch)
@@ -80,63 +147,3 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, bindAction)(Splash);
 
-
-import Animated from 'react-native';
-
-class Fade extends Component
-    {
-    constructor(props)
-        {
-        super(props);
-        this.state = {
-            visible: props.visible,
-        };
-        };
-
-    componentWillMount()
-        {
-        this._visibility = new Animated.Value(this.props.visible ? 1 : 0);
-        }
-
-    componentWillReceiveProps(nextProps)
-        {
-        if ( nextProps.visible )
-            {
-            this.setState({visible: true});
-            }
-        Animated.timing(this._visibility, {
-            toValue: nextProps.visible ? 1 : 0,
-            duration: 300,
-        }).start(() =>
-        {
-        this.setState({visible: nextProps.visible});
-        });
-        }
-
-    render()
-        {
-        const {visible, style, children, ... rest} = this.props;
-
-        const containerStyle = {
-            opacity: this._visibility.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, 1],
-            }),
-            transform: [
-                {
-                    scale: this._visibility.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [1.1, 1],
-                    }),
-                },
-            ],
-        };
-
-        const combinedStyle = [containerStyle, style];
-        return (
-            <Animated.View style={this.state.visible ? combinedStyle : containerStyle} {... rest}>
-                {this.state.visible ? children : null}
-            </Animated.View>
-        );
-        }
-    }
