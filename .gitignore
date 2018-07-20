@@ -4,6 +4,9 @@ heroapi/heroapi/settings.py
 heroapi/.vscode/
 heroapi/db_dumps/
 
+heckaboom_app/node_modules/
+heckaboom_app/.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -108,3 +111,63 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+
+
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+heckaboom_app/build/
+heckaboom_app/*.pbxuser
+!default.pbxuser
+heckaboom_app/*.mode1v3
+!default.mode1v3
+heckaboom_app/*.mode2v3
+!default.mode2v3
+heckaboom_app/*.perspectivev3
+!default.perspectivev3
+heckaboom_app/xcuserdata
+heckaboom_app/*.xccheckout
+heckaboom_app/*.moved-aside
+heckaboom_app/DerivedData
+heckaboom_app/*.hmap
+heckaboom_app/*.ipa
+heckaboom_app/*.xcuserstate
+heckaboom_app/project.xcworkspace
+
+# Android/IntelliJ
+#
+heckaboom_app/build/
+heckaboom_app/.idea
+heckaboom_app/.gradle
+heckaboom_app/local.properties
+heckaboom_app/*.iml
+
+# node.js
+#
+heckaboom_app/node_modules/
+heckaboom_app/npm-debug.log
+heckaboom_app/yarn-error.log
+
+# BUCK
+heckaboom_app/buck-out/
+\.buckd/
+heckaboom_app/*.keystore
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
