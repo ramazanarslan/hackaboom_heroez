@@ -15,6 +15,7 @@ import * as Animatable from 'react-native-animatable';
 import {Navigation} from 'react-native-navigation';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import IconFA from 'react-native-vector-icons/FontAwesome';
 
 const bg = require("../../../assets/bg.png");
 const man = require("../../../assets/man.png");
@@ -42,13 +43,16 @@ class Splash extends Component
         this.setState({HulkVisible: true})
         }, 1500);
 
-        setTimeout(() => {
-            this._populateIcons().then((values) => {
-            // Start app only if all icons are loaded
-            this.startApp(values);
-            }).catch((error) => {
-            console.error(error);
-            });
+        setTimeout(() =>
+        {
+        this._populateIcons().then((values) =>
+        {
+        // Start app only if all icons are loaded
+        this.startApp(values);
+        }).catch((error) =>
+        {
+        console.error(error);
+        });
         }, 2000);
         }
 
@@ -75,63 +79,81 @@ class Splash extends Component
         );
         }
 
-    _populateIcons = () => {
-      return new Promise(function (resolve, reject) {
+    _populateIcons = () =>
+        {
+        return new Promise(function (resolve, reject)
+        {
         Promise.all(
-          [
-            Icon.getImageSource('ios-heart', 24),
-            Icon.getImageSource('ios-shirt', 24),
-            Icon.getImageSource('ios-musical-notes', 24)
-          ]
-        ).then((values) => {
-          resolve(values);
-        }).catch((error) => {
-          console.log(error);
-          reject(error);
+            [
+                IconFA.getImageSource('dashboard', 24),
+                Icon.getImageSource('ios-shirt', 24),
+                Icon.getImageSource('ios-musical-notes', 24)
+            ]
+        ).then((values) =>
+        {
+        resolve(values);
+        }).catch((error) =>
+        {
+        console.log(error);
+        reject(error);
         }).done();
-      });
-    };
-
-    startApp = (values) => {
-      Navigation.startTabBasedApp({
-        tabs: [
-          {
-            label: 'Dashboard',
-            screen: 'hackaboomapp.Dashboard',
-            icon: values[0],
-            title: 'dashboard'
-          },
-          {
-            label: 'Clothes',
-            screen: 'hackaboomapp.Clothes',
-            icon: values[1],
-            title: 'clothes'
-          },
-          {
-            label: 'Music',
-            screen: 'hackaboomapp.Music',
-            icon: values[2],
-            title: 'music'
-          }
-        ],
-        tabsStyle: {
-          tabBarButtonColor: '#ffff00',
-          tabBarSelectedButtonColor: '#ff9900',
-          tabBarBackgroundColor: '#551A8B',
-          initialTabIndex: 1,
-        },
-        appStyle: {
-          orientation: 'portrait'
-        },
-        animationType: 'slide-down'
-      })
-        .then(() => {
-          null;
-        })
-        .catch((err) => {
-          console.log("Navigation is failed. Error => ", err);
         });
-    }
+        };
+
+    startApp = (values) =>
+        {
+        Navigation.startTabBasedApp({
+            tabs: [
+                {
+                    label: 'Dashboard',
+                    screen: 'hackaboomapp.Dashboard',
+                    icon: values[0],
+                    title: 'dashboard'
+                },
+                {
+                    label: 'Clothes',
+                    screen: 'hackaboomapp.Clothes',
+                    icon: values[1],
+                    title: 'clothes'
+                },
+                {
+                    label: 'Music',
+                    screen: 'hackaboomapp.Music',
+                    icon: values[2],
+                    title: 'music'
+                }
+            ],
+            tabsStyle: {
+
+                tabBarButtonColor: '#fff',
+                tabBarSelectedButtonColor: '#fff',
+                tabBarBackgroundColor: '#fff',
+                initialTabIndex: 1,
+            },
+            appStyle: {
+                orientation: 'portrait',
+                tabBarButtonColor: '#669999',
+                tabBarSelectedButtonColor: '#23c086',
+                tabBarBackgroundColor: '#eaeaea',
+
+                tabBarHideShadow: true,
+                tabBarTranslucent: true,
+                tabFontFamily: 'Avenir-Medium',  // existing font family name or asset file without extension which can
+                                                 // be '.ttf' or '.otf' (searched only if '.ttf' asset not found)
+                tabFontSize: 10,
+                selectedTabFontSize: 12,
+            },
+            animationType: 'slide-down'
+        })
+            .then(() =>
+            {
+            null;
+            })
+            .catch((err) =>
+            {
+            console.log("Navigation is failed. Error => ", err);
+            });
+        }
 
 
     }
