@@ -27,7 +27,7 @@ class Cloth(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='cloth_images/')
     xxl = models.BooleanField()
-    description = models.CharField(max_length=500)
+    #description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     cloth_type = models.CharField(choices=CLOTH_TYPES, max_length=2, default='GE')
 
