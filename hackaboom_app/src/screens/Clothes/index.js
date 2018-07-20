@@ -11,7 +11,7 @@ import {
 
 import { connect } from "react-redux";
 
-class SignIn extends Component {
+class Clothes extends Component {
 
     render() {
         return (
@@ -36,4 +36,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, bindAction)(SignIn);
+export default connect(mapStateToProps, bindAction)(Clothes);
