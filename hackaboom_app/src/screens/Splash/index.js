@@ -142,8 +142,11 @@ class Splash extends Component
                                                  // be '.ttf' or '.otf' (searched only if '.ttf' asset not found)
                 tabFontSize: 10,
                 selectedTabFontSize: 12,
+
             },
-            animationType: 'slide-down'
+            animationType: 'fade',
+
+
         })
             .then(() =>
             {
