@@ -1,7 +1,7 @@
 from django.db import models
 
 
-CLOTH_TYPES= (
+CLOTH_TYPES = (
     ('GE', 'General'),
     ('SH', 'Short'),
     ('TE', 'T-Shirt'),
@@ -25,7 +25,7 @@ class Shop(models.Model):
 class Cloth(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.FileField()
+    image = models.ImageField(upload_to='cloth_images/')
     xxl = models.BooleanField()
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=8, decimal_places=2)
