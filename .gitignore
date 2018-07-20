@@ -1,7 +1,8 @@
-api/env/
-api/static/
-api/heroapi/settings.py
-
+heroapi/env/
+heroapi/static/
+heroapi/heroapi/settings.py
+heroapi/.vscode/
+heroapi/db_dumps/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
