@@ -1,0 +1,3 @@
+rootProject.name = 'hackaboom_app'
+
+include ':app'
