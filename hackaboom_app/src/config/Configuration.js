@@ -1,7 +1,7 @@
 import { Platform } from "react-native";
 const Configuration = {
-    API_URL : "https://dev.tppagent.api.dev.birlikte.al",
-    STATIC_HOST :"https://dev.tppagent.api.dev.birlikte.al",
+    API_URL : "167.99.141.244",
+    STATIC_HOST :"167.99.141.244",
     PLATFORM_IOS : Platform.OS == "ios",
     PLATFORM_ANDROID : Platform.OS != "ios",
     HTTP_TIMEOUT_MS : 40000 /* 40 sec */

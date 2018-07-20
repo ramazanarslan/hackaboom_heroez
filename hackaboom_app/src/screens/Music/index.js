@@ -33,7 +33,7 @@ function bindAction(dispatch) {
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
+
 });
 
 export default connect(mapStateToProps, bindAction)(Dashboard);
