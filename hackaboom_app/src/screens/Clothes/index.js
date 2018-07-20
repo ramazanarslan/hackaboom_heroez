@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
     View, FlatList
 } from "react-native";
@@ -7,16 +7,21 @@ import {
     Text
 } from 'native-base';
 
-import { connect } from "react-redux";
-import { tryGetShops, getShopsReset } from "../../redux/clothes/Actions";
+import {connect} from "react-redux";
+import {tryGetShops, getShopsReset} from "../../redux/clothes/Actions";
 
 import MapView from 'react-native-maps';
 
 import styles from "./styles";
 
-class Clothes extends Component {
+class Clothes extends Component
+    {
+    static navigatorStyle = {
+        navBarHidden: true,
+    };
 
-    constructor(props) {
+    constructor(props)
+        {
         super(props);
 
         this.state = {
@@ -27,31 +32,36 @@ class Clothes extends Component {
                 longitudeDelta: 0.0421,
             }
         }
-    }
+        }
 
-    componentDidMount() {
+    componentDidMount()
+        {
         /* const { shopList } = this.props.clothes;
-        if(shopList.length <= 0)
-            this.props.tryGetShops(); */
-    }
+         if(shopList.length <= 0)
+         this.props.tryGetShops(); */
+        }
 
-    componentDidUpdate() {
+    componentDidUpdate()
+        {
         const {
-            getShopsInProgress, getShopsHasError, getShopsCompleted 
+            getShopsInProgress, getShopsHasError, getShopsCompleted
         } = this.props.clothes;
 
-        if(!getShopsInProgress && !getShopsHasError && getShopsCompleted){
+        if ( !getShopsInProgress && !getShopsHasError && getShopsCompleted )
+            {
             console.log("fetching shop is done...");
             this.props.getShopsReset();
-        }
-        else if(!getShopsInProgress && getShopsHasError && getShopsCompleted){
+            }
+        else if ( !getShopsInProgress && getShopsHasError && getShopsCompleted )
+            {
             console.log("fetching shop has error...");
             this.props.getShopsReset();
+            }
         }
-    }
 
-    render() {
-        const { shopList } = this.props.clothes;
+    render()
+        {
+        const {shopList} = this.props.clothes;
 
         return (
             <Container>
@@ -59,44 +69,47 @@ class Clothes extends Component {
                     <MapView
                         style={styles.mapStyle}
                         region={this.state.region}
-                        onRegionChangeComplete={(region) => this.setState({ region })}
+                        onRegionChangeComplete={(region) => this.setState({region})}
                     />
                 </View>
                 <View style={styles.listLayout}>
                     <FlatList
                         data={shopList}
                         keyExtractor={(item, index) => item.name + "-" + index}
-                        renderItem={({ item, index }) => this.renderShopListItem(item, index)}
+                        renderItem={({item, index}) => this.renderShopListItem(item, index)}
                         ListEmptyComponent={() => this.renderEmptyListItem()}
                     />
                 </View>
             </Container>
         );
-    }
-    
-    renderShopListItem(item, index) {
+        }
+
+    renderShopListItem(item, index)
+        {
         return (
             <View>
                 <Text>{item.name}</Text>
             </View>
         );
-    }
+        }
 
-    renderEmptyListItem() {
+    renderEmptyListItem()
+        {
         return (
             <View>
                 <Text>No item :(</Text>
             </View>
         );
+        }
     }
-}
 
-function bindAction(dispatch) {
+function bindAction(dispatch)
+    {
     return {
         tryGetShops: () => dispatch(tryGetShops()),
         getShopsReset: () => dispatch(getShopsReset())
     }
-}
+    }
 
 const mapStateToProps = state => ({
     clothes: state.clothes
