@@ -4,6 +4,9 @@ heroapi/heroapi/settings.py
 heroapi/.vscode/
 heroapi/db_dumps/
 
+heckaboom_app/node_modules/
+heckaboom_app/.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
