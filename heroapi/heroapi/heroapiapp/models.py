@@ -18,6 +18,9 @@ class Shop(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6)
     long = models.DecimalField(max_digits=9, decimal_places=6)
 
+    def __str__(self):
+        return self.name
+
 
 class Cloth(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
@@ -27,3 +30,6 @@ class Cloth(models.Model):
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     cloth_type = models.CharField(choices=CLOTH_TYPES, max_length=2, default='GE')
+
+    def __str__(self):
+        return '{} ({})'.format(self.title, self.cloth_type)
