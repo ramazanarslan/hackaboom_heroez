@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import FileExtensionValidator
 
 CLOTH_TYPES = (
     ('GE', 'General'),
@@ -25,7 +25,7 @@ class Shop(models.Model):
 class Cloth(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='cloth_images/')
+    image = models.ImageField(upload_to='cloth_images/', validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'gif', 'png'])])
     xxl = models.BooleanField()
     #description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=8, decimal_places=2)
