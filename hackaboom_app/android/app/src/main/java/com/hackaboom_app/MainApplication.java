@@ -4,6 +4,7 @@ import android.app.Application;
 import com.reactnativenavigation.NavigationApplication;
 
 import com.facebook.react.ReactApplication;
+import guichaguri.trackplayer.TrackPlayer;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -44,7 +45,8 @@ public class MainApplication extends NavigationApplication implements ReactAppli
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
-      new MapsPackage()
+      new MapsPackage(),
+      new TrackPlayer()
     );
   }
 

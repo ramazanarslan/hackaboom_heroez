@@ -38,7 +38,7 @@ class HttpService {
     _createUrl(requestOptions) {
         let url = requestOptions.apiPath || Configuration.API_URL;
         url = requestOptions.path ? (url + requestOptions.path) : url;
-        return url;
+        return "http://" + url;
     }
 
     setToken(token) {

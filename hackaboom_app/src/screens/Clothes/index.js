@@ -10,7 +10,7 @@ import {
 import { connect } from "react-redux";
 import { tryGetShops, getShopsReset } from "../../redux/clothes/Actions";
 
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 import styles from "./styles";
 
@@ -21,8 +21,8 @@ class Clothes extends Component {
 
         this.state = {
             region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: 41.053655,
+                longitude: 28.991958,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             }
@@ -30,21 +30,21 @@ class Clothes extends Component {
     }
 
     componentDidMount() {
-        /* const { shopList } = this.props.clothes;
-        if(shopList.length <= 0)
-            this.props.tryGetShops(); */
+        const { shopList } = this.props.clothes;
+        if (shopList.length <= 0)
+            this.props.tryGetShops();
     }
 
     componentDidUpdate() {
         const {
-            getShopsInProgress, getShopsHasError, getShopsCompleted 
+            getShopsInProgress, getShopsHasError, getShopsCompleted
         } = this.props.clothes;
 
-        if(!getShopsInProgress && !getShopsHasError && getShopsCompleted){
+        if (!getShopsInProgress && !getShopsHasError && getShopsCompleted) {
             console.log("fetching shop is done...");
             this.props.getShopsReset();
         }
-        else if(!getShopsInProgress && getShopsHasError && getShopsCompleted){
+        else if (!getShopsInProgress && getShopsHasError && getShopsCompleted) {
             console.log("fetching shop has error...");
             this.props.getShopsReset();
         }
@@ -59,13 +59,20 @@ class Clothes extends Component {
                     <MapView
                         style={styles.mapStyle}
                         region={this.state.region}
-                        onRegionChangeComplete={(region) => this.setState({ region })}
-                    />
+                        onRegionChangeComplete={(region) => this.setState({ region })}>
+                        {shopList.map(item => (
+                            <Marker
+                                key={item.id}
+                                coordinate={{latitude: parseFloat(item.lat), longitude: parseFloat(item.long)}}
+                                title={item.name}
+                            />
+                        ))}
+                    </MapView>
                 </View>
                 <View style={styles.listLayout}>
                     <FlatList
                         data={shopList}
-                        keyExtractor={(item, index) => item.name + "-" + index}
+                        keyExtractor={(item, index) => item.id + "-" + index}
                         renderItem={({ item, index }) => this.renderShopListItem(item, index)}
                         ListEmptyComponent={() => this.renderEmptyListItem()}
                     />
@@ -73,7 +80,7 @@ class Clothes extends Component {
             </Container>
         );
     }
-    
+
     renderShopListItem(item, index) {
         return (
             <View>

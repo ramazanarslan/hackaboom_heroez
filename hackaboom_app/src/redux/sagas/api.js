@@ -13,7 +13,7 @@ class api {
 
     fetchShopList = () => {
         return httpService.fetch({
-            path: "/cloth/shoplist/",
+            path: "/shoplist/",
             method: "GET",
             sendToken: false
         });
