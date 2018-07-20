@@ -7,6 +7,13 @@ import {
     signinSuccess, signinFailure
 } from "../auth/Actions";
 
+import {
+    GET_SHOPS_REQUEST
+} from "../clothes/ActionTypes";
+import {
+    getShopsSuccess, getShopsFailure
+} from "../clothes/Actions";
+
 import api from "./api";
 
 const trySignInSaga = function* (action) {
@@ -40,9 +47,33 @@ const trySignInSaga = function* (action) {
     }
 };
 
+const tryGetShopList = function* (action) {
+    try {
+        const getShopListResponse = yield call(api.fetchShopList);
+
+        console.log("getShopListResponse => ", getShopListResponse);
+
+        if (getShopListResponse) {
+            const { shopList } = getShopListResponse;
+
+            yield put(getShopsSuccess(shopList));
+        }
+        else {
+            console.log("Getting shop list failed by api. No response !");
+            yield put(getShopsFailure());
+        }
+    } catch (err) {
+        console.log("Getting shop list failed by api. Error => ", err);
+        yield put(getShopsFailure());
+    }
+};
+
 const saga = function* () {
     //AUTH
     yield takeLatest(SIGNIN_REQUEST, trySignInSaga);
+
+    //CLOTHES
+    yield takeLatest(GET_SHOPS_REQUEST, tryGetShopList);
 };
 
 export default saga;
