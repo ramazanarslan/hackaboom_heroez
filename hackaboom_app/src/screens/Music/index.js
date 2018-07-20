@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import {
     View
 } from "react-native";
+
 import {
     Container,
     Content,
     Button,
     Text
 } from 'native-base';
-
-import TrackPlayer from 'react-native-track-player';
 
 import { connect } from "react-redux";
 
@@ -51,8 +50,6 @@ function bindAction(dispatch) {
     }
 }
 
-const mapStateToProps = state => ({
-
-});
+const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps, bindAction)(Dashboard);

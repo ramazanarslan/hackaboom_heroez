@@ -14,12 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import include, path, re_path
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
-from django.http import HttpResponse
+
 
 urlpatterns = [
-    path('', lambda request: HttpResponse("Lmao you hacker\n\n.", content_type="text/plain")),
+    re_path(r'^', include('heroapi.heroapiapp.urls')),
     re_path(r'^api-token-auth/', obtain_jwt_token),
     re_path(r'^api-token-refresh/', refresh_jwt_token),
     re_path(r'^api-token-verify/', verify_jwt_token),

@@ -15,6 +15,9 @@ import MapView, { Marker } from 'react-native-maps';
 import styles from "./styles";
 
 class Clothes extends Component {
+    static navigatorStyle = {
+        navBarHidden: true,
+    };
 
     constructor(props) {
         super(props);
@@ -63,7 +66,7 @@ class Clothes extends Component {
                         {shopList.map(item => (
                             <Marker
                                 key={item.id}
-                                coordinate={{latitude: parseFloat(item.lat), longitude: parseFloat(item.long)}}
+                                coordinate={{ latitude: parseFloat(item.lat), longitude: parseFloat(item.long) }}
                                 title={item.name}
                             />
                         ))}
