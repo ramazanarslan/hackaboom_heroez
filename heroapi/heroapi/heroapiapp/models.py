@@ -15,8 +15,8 @@ CLOTH_TYPES= (
 
 class Shop(models.Model):
     name = models.CharField(max_length=100)
-    lat = models.IntegerField()
-    long = models.IntegerField()
+    lat = models.DecimalField(max_digits=9, decimal_places=6)
+    long = models.DecimalField(max_digits=9, decimal_places=6)
 
 
 class Cloth(models.Model):
