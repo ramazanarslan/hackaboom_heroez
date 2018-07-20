@@ -5,6 +5,7 @@ import com.reactnativenavigation.NavigationApplication;
 
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -42,7 +43,8 @@ public class MainApplication extends NavigationApplication implements ReactAppli
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-      new VectorIconsPackage()
+      new VectorIconsPackage(),
+      new MapsPackage()
     );
   }
 

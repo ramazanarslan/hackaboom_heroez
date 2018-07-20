@@ -11,6 +11,14 @@ class api {
         });
     };
 
+    fetchShopList = () => {
+        return httpService.fetch({
+            path: "/cloth/shoplist/",
+            method: "GET",
+            sendToken: false
+        });
+    };
+
 }
 
 export default new api();
