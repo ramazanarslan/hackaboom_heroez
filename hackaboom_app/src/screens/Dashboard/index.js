@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import {
-    View, Animated, Easing
+    View, Animated, Easing, ImageBackground
 } from "react-native";
-<<<<<<< HEAD
-=======
-import {Animated, Easing, ImageBackground} from 'react-native';
->>>>>>> a6181ca16fcd082f8c2bad4bd54a989c48b22732
 
 import {
     Container,
@@ -48,14 +44,6 @@ class Dashboard extends Component {
     render() {
         return (
             <Container>
-<<<<<<< HEAD
-                <Content>
-                    <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
-                        <LottieView style={{ height: 350, width: 350 }} source={require('../../../assets/speed')}
-                            progress={this.state.progress} />
-                    </View>
-                </Content>
-=======
                 <ImageBackground source={bg} style={styles.bg}>
                     <Content>
 
@@ -133,7 +121,6 @@ class Dashboard extends Component {
                 </ImageBackground>
 
 
->>>>>>> a6181ca16fcd082f8c2bad4bd54a989c48b22732
             </Container>
         );
     }

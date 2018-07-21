@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 const deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
@@ -11,12 +11,11 @@ export default StyleSheet.create({
         alignSelf: "center"
     },
     card: {
-    justifyContent:'center',
-
-        marginLeft:5,
-        marginRight:5,
-        marginBottom:5,
-        marginTop:5,
+        justifyContent: 'center',
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 5,
+        marginTop: 5,
         padding: 15,
         borderRadius: 10,
         borderWidth: 1,
