@@ -52,12 +52,19 @@ class Dashboard extends Component
                 <ImageBackground source={bg} style={styles.bg}>
                     <Content>
 
-                        <View style={{alignSelf: 'center', justifyContent: 'center'}}>
-                            <LottieView style={{height: 250, width: 250, position: 'absolute', zIndex: 2}} loop={true}
+                        <View style={{alignSelf: 'center', justifyContent: 'center',marginLeft:10}}>
+                            <LottieView style={{
+                                height: 250,
+                                width: 350,
+                                position: 'absolute',
+                                zIndex: 2,
+                                justifyContent: 'center',
+                                alignSelf: 'center'
+                            }} loop={true}
                                         source={require('../../../assets/heartt')}
                                         progress={this.state.progress}/>
 
-                            <LottieView style={{height: 250, width: 250}} loop={true}
+                            <LottieView style={{height: 250, width: 250, alignSelf: 'center'}} loop={true}
                                         source={require('../../../assets/pulse')}
                                         progress={this.state.progress}/>
 
@@ -65,8 +72,11 @@ class Dashboard extends Component
                         </View>
                         <View
                             style={{
-                                margin: 15,
-                                borderBottomColor: "white",
+                                marginLeft: 25,
+                                marginRight: 25,
+                                marginTop: 5,
+                                marginBottom: 5,
+                                borderBottomColor: 'rgba(255, 255, 255, 0.3)',
                                 borderBottomWidth: 1
                             }}
                         />
@@ -103,7 +113,7 @@ class Dashboard extends Component
                                     }}
                                 />
 
-                                <Text style={styles.textSt} > Blood
+                                <Text style={styles.textSt}> Blood
                                     Pressure</Text>
                                 <Right><Text style={styles.textStb}>100/60 mmHg</Text></Right>
                             </View>

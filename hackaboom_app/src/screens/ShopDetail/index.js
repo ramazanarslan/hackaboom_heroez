@@ -1,23 +1,29 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
-    View, FlatList
+    View, FlatList, Image
 } from "react-native";
 
 import {
     Container,
     Content,
     Button,
-    Text
+    Text, Card, CardItem, Right, Left, Body, Thumbnail, Icon
 } from 'native-base';
 
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
-class ShopDetail extends Component {
-    
-    render() {
+import styles from './styles';
+
+class ShopDetail extends Component
+    {
+
+    render()
+        {
         console.log(this.props);
-        const { shopId } = this.props;
-        const clothList = this.props.clothes.shopList[shopId];
+        const {shopId, shopName} = this.props;
+        console.log('ramazan');
+        console.log(this.props.clothes.shopList[shopId]);
+        const clothList = this.props.clothes.shopList[shopId].clothes;
 
         return (
             <Container>
@@ -25,35 +31,82 @@ class ShopDetail extends Component {
                     <FlatList
                         data={clothList}
                         keyExtractor={(item, index) => item.id + "-" + index}
-                        renderItem={({ item, index }) => this.renderShopListItem(item, index)}
+                        renderItem={({item, index}) => this.renderShopListItem(item, index)}
                         ListEmptyComponent={() => this.renderEmptyListItem()}
                     />
                 </Content>
             </Container>
         );
-    }
+        }
 
-    renderShopListItem(item, index) {
+    renderShopListItem(item, index)
+        {
+        const str = item.image.toString();
+        const imageURI = {uri: str};
+
+
+        const {shopName} = this.props;
+
         return (
             <View>
-                <Text>{item.name}</Text>
+                <Card>
+                    <CardItem>
+                        <Left>
+                            <View style={styles.roundedNameInitials}><Text style={{
+                                color: "#fff",
+                                fontSize: 19,
+                                alignSelf: "center",
+                                fontFamily: 'Poppins-Regular',
+                                marginLeft: 4
+                            }}>{shopName.charAt(0).toUpperCase()}{shopName.charAt(0).toUpperCase()}</Text></View>
+                            <Body>
+                            <Text>{item.title}</Text>
+                            <Text note>{shopName}</Text>
+                            </Body>
+                        </Left>
+                    </CardItem>
+                    <CardItem cardBody>
+                        <Image source={imageURI} style={{height: 200, width: null, flex: 1}}/>
+                    </CardItem>
+                    <CardItem>
+                        <Left>
+                            <Button transparent>
+                                <Icon style={{color: '#23C086'}}
+                                      name="thumbs-up"/>
+                                <Text style={{fontSize: 10, color: 'gray'}}>12 Likes</Text>
+                            </Button>
+                        </Left>
+                        <Body>
+                        <Button transparent>
+                            <Icon style={{color: '#23C086'}} name="chatbubbles"/>
+                            <Text style={{fontSize: 10, color: 'gray'}}>4 Comments</Text>
+                        </Button>
+                        </Body>
+                        <Right>
+                            <Text style={{fontSize: 10, color: 'gray'}}>1h ago</Text>
+                        </Right>
+                    </CardItem>
+                </Card>
+
+
             </View>
         );
-    }
+        }
 
-    renderEmptyListItem() {
+    renderEmptyListItem()
+        {
         return (
             <View>
                 <Text>No item :(</Text>
             </View>
         );
+        }
     }
-}
 
-function bindAction(dispatch) {
-    return {
+function bindAction(dispatch)
+    {
+    return {}
     }
-}
 
 const mapStateToProps = state => ({
     clothes: state.clothes

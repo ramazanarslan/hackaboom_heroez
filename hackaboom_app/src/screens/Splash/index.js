@@ -32,6 +32,8 @@ class Splash extends Component {
             HulkVisible: false
         }
 
+
+
     }
 
     componentDidMount() {
