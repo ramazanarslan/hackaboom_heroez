@@ -3,10 +3,10 @@ import {Dimensions, StyleSheet} from "react-native";
 const deviceHeight = Dimensions.get("window").height;
 export default StyleSheet.create({
     mapLayout: {
-        flex: 0.4
+        flex: 0.7
     },
     listLayout: {
-        flex: 0.6
+        flex: 0.3
     },
     mapStyle: {
         flex: 1

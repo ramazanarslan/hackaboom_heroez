@@ -18,7 +18,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import IconFA from 'react-native-vector-icons/FontAwesome';
 
 const bg = require("../../../assets/bg.png");
-const man = require("../../../assets/man.png");
+const man = require("../../../assets/man_green.png");
 const hulk = require("../../../assets/hulk.png");
 import styles from "./styles";
 
