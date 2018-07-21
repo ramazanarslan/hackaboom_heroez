@@ -45,7 +45,7 @@ class Music extends Component {
     componentDidMount() {
         Animated.timing(this.state.progress, {
             toValue: 1,
-            duration: 2500,
+            duration: 6500,
             easing: Easing.linear,
         }).start();
     }
@@ -81,7 +81,7 @@ class Music extends Component {
                     source={{ uri: "http://167.99.141.244/media/sounds/Koop_-_Koop_Island_Blues_Official_Music_Video.mp3" }} // Can be a URL or a local file.
                     ref={(el) => this.audioEl = el}
                     paused={this.state.paused}               // Pauses playback entirely.
-                    onLoad={(data) => console.log("audio is loaded.", data)}    // Callback when video loads 
+                    onLoad={(data) => console.log("audio is loaded.", data)}    // Callback when video loads
                 />
             </Container>
         );

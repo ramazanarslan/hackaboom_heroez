@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import {
     View, Animated, Easing, ImageBackground
 } from "react-native";
@@ -7,43 +7,48 @@ import {
     Container,
     Content,
     Button,
-    Text, CardItem, Card
+    Text, CardItem, Card, Right
 } from 'native-base';
 
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 import LottieView from 'lottie-react-native';
 import IconFA from 'react-native-vector-icons/FontAwesome';
-import IconMI from 'react-native-vector-icons/MaterialIcons';
+import IconMI from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconE from 'react-native-vector-icons/Entypo';
 
 const bg = require("../../../assets/bggradient.png");
 
 import styles from "./styles";
 
-class Dashboard extends Component {
+class Dashboard extends Component
+    {
     static navigatorStyle = {
         navBarHidden: true,
     };
 
-    constructor(props) {
+    constructor(props)
+        {
         super(props);
         this.state = {
             progress: new Animated.Value(0),
         };
-    }
+        }
 
-    componentDidMount() {
+    componentDidMount()
+        {
         Animated.timing(this.state.progress, {
             toValue: 1,
-            duration: 15000,
+            duration: 45000,
             easing: Easing.linear,
         }).start();
-    }
+        }
 
-    render() {
+    render()
+        {
         return (
             <Container>
+
                 <ImageBackground source={bg} style={styles.bg}>
                     <Content>
 
@@ -78,15 +83,18 @@ class Dashboard extends Component {
                                     }}
                                 />
                                 <Text
-                                    style={{color: 'white', fontSize: 15, fontFamily: 'Poppins-Regular'}}> Heartbeat
-                                    -
-                                    82 bpm </Text>
+                                    style={styles.textSt}> Heartbeat
+                                </Text>
+                                <Right>
 
+                                    <Text style={styles.textStb}>82
+                                        bpm</Text>
+                                </Right>
                             </View>
 
                             <View style={styles.card}>
-                                <IconFA
-                                    name="heartbeat"
+                                <IconMI
+                                    name="av-timer"
                                     style={{
                                         fontSize: 25,
                                         color: 'white',
@@ -95,9 +103,9 @@ class Dashboard extends Component {
                                     }}
                                 />
 
-                                <Text style={{color: 'white', fontSize: 15, fontFamily: 'Poppins-Regular'}}> Blood
-                                    Pressure
-                                    - 100/60 mmHg</Text>
+                                <Text style={styles.textSt} > Blood
+                                    Pressure</Text>
+                                <Right><Text style={styles.textStb}>100/60 mmHg</Text></Right>
                             </View>
                             <View style={styles.card}>
                                 <IconE
@@ -113,8 +121,8 @@ class Dashboard extends Component {
                                     color: 'white',
                                     fontSize: 15,
                                     fontFamily: 'Poppins-Regular'
-                                }}> Perspiration
-                                    (Sweating) - 2.7 L/h</Text>
+                                }}> Perspiration</Text>
+                                <Right><Text style={styles.textStb}> (Sweating) - 2.7 L/h</Text></Right>
                             </View>
                         </View>
                     </Content>
@@ -123,12 +131,13 @@ class Dashboard extends Component {
 
             </Container>
         );
+        }
     }
-}
 
-function bindAction(dispatch) {
+function bindAction(dispatch)
+    {
     return {}
-}
+    }
 
 const mapStateToProps = state => ({});
 

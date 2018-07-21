@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {
     View, FlatList, Card, CardItem,
-    TouchableWithoutFeedback
+    TouchableOpacity
 } from "react-native";
 import {
     Container,
@@ -88,13 +88,16 @@ class Clothes extends Component {
     renderShopListItem(item, index) {
         return (
 
-            <TouchableWithoutFeedback onPress={() => this.goto_shopDetail()}>
+            <TouchableOpacity onPress={() => {
+            this.props.navigation.navigate("PropertyDetail", {item});
+            }}>
                 <View style={styles.card}>
 
                     <View style={styles.roundedNameInitials}><Text style={{
                         color: "#fff",
                         fontSize: 19,
-                        alignSelf: "center"
+                        alignSelf: "center",
+                         fontFamily: 'Poppins-Regular'
                     }}>{item.name.charAt(0).toUpperCase()}{item.name.charAt(0).toUpperCase()}</Text></View>
 
                     <Text style={styles.textname}>{item.name}</Text>
@@ -102,8 +105,7 @@ class Clothes extends Component {
 
                 </View>
 
-
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         );
     }
 
