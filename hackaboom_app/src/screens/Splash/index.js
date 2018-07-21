@@ -116,6 +116,7 @@ class Splash extends Component {
                 tabBarSelectedButtonColor: '#fff',
                 tabBarBackgroundColor: '#fff',
                 initialTabIndex: 1,
+
             },
             appStyle: {
                 orientation: 'portrait',
@@ -125,7 +126,7 @@ class Splash extends Component {
 
                 tabBarHideShadow: true,
                 tabBarTranslucent: true,
-                tabFontFamily: 'Avenir-Medium',  // existing font family name or asset file without extension which can
+                tabFontFamily: 'Poppins-Regular',  // existing font family name or asset file without extension which can
                 // be '.ttf' or '.otf' (searched only if '.ttf' asset not found)
                 tabFontSize: 10,
                 selectedTabFontSize: 12,
