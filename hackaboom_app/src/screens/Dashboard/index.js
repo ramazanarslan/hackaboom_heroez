@@ -1,8 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
-    View
+    View, Animated, Easing
 } from "react-native";
-import {Animated, Easing} from 'react-native';
 
 import {
     Container,
@@ -11,52 +10,47 @@ import {
     Text
 } from 'native-base';
 
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import LottieView from 'lottie-react-native';
 
-class Dashboard extends Component
-    {
+class Dashboard extends Component {
     static navigatorStyle = {
         navBarHidden: true,
     };
 
-    constructor(props)
-        {
+    constructor(props) {
         super(props);
         this.state = {
             progress: new Animated.Value(0),
         };
-        }
+    }
 
-    componentDidMount()
-        {
+    componentDidMount() {
         Animated.timing(this.state.progress, {
             toValue: 1,
             duration: 15000,
             easing: Easing.linear,
         }).start();
-        }
+    }
 
-    render()
-        {
+    render() {
         return (
             <Container>
                 <Content>
-                    <View style={{alignSelf: 'center',justifyContent:'center'}}>
-                        <LottieView style={{height: 350, width: 350}} source={require('../../../assets/speed')}
-                                    progress={this.state.progress}/>
+                    <View style={{ alignSelf: 'center', justifyContent: 'center' }}>
+                        <LottieView style={{ height: 350, width: 350 }} source={require('../../../assets/speed')}
+                            progress={this.state.progress} />
                     </View>
                 </Content>
             </Container>
         );
-        }
     }
+}
 
-function bindAction(dispatch)
-    {
+function bindAction(dispatch) {
     return {}
-    }
+}
 
 const mapStateToProps = state => ({});
 

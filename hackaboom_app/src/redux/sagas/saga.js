@@ -14,6 +14,14 @@ import {
     getShopsSuccess, getShopsFailure
 } from "../clothes/Actions";
 
+import {
+    GET_HAPPY_REQUEST, GET_ANGRY_REQUEST
+} from "../music/ActionTypes";
+import {
+    getHappySuccess, getHappyFailure,
+    getAngrySuccess, getAngryFailure
+} from "../music/Actions";
+
 import api from "./api";
 
 const trySignInSaga = function* (action) {
@@ -66,12 +74,54 @@ const tryGetShopList = function* (action) {
     }
 };
 
+const tryGetHappyList = function* (action) {
+    try {
+        const getHappyListResponse = yield call(api.getHappyMusicList);
+
+        console.log("getHappyListResponse => ", getHappyListResponse);
+
+        if (getHappyListResponse) {
+           yield put(getHappySuccess(getHappyListResponse));
+        }
+        else {
+            console.log("Getting happy list failed by api. No response !");
+            yield put(getHappyFailure());
+        }
+    } catch (err) {
+        console.log("Getting happy failed by api. Error => ", err);
+        yield put(getHappyFailure());
+    }
+};
+
+const tryGetAngryList = function* (action) {
+    try {
+        const getAngryListResponse = yield call(api.getAngryMusicList);
+
+        console.log("getAngryListResponse => ", getAngryListResponse);
+
+        if (getAngryListResponse) {
+           yield put(getAngrySuccess(getAngryListResponse));
+        }
+        else {
+            console.log("Getting angry list failed by api. No response !");
+            yield put(getAngryFailure());
+        }
+    } catch (err) {
+        console.log("Getting angry failed by api. Error => ", err);
+        yield put(getAngryFailure());
+    }
+};
+
 const saga = function* () {
     //AUTH
     yield takeLatest(SIGNIN_REQUEST, trySignInSaga);
 
     //CLOTHES
     yield takeLatest(GET_SHOPS_REQUEST, tryGetShopList);
+
+    //MUSIC
+    yield takeLatest(GET_HAPPY_REQUEST, tryGetHappyList);
+    yield takeLatest(GET_ANGRY_REQUEST, tryGetAngryList);
 };
 
 export default saga;

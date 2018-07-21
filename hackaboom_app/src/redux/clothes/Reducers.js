@@ -7,7 +7,7 @@ const initialState = {
 
     getShopsInProgress: false,
     getShopsHasError: false,
-    getShopsCompleted: false
+    getShopsCompleted: false,
 };
 
 export default function (state = initialState, action) {

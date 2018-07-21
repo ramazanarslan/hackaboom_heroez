@@ -4,6 +4,7 @@ import android.app.Application;
 import com.reactnativenavigation.NavigationApplication;
 
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -46,7 +47,8 @@ public class MainApplication extends NavigationApplication implements ReactAppli
     return Arrays.<ReactPackage>asList(
       new VectorIconsPackage(),
       new MapsPackage(),
-      new LottiePackage()
+      new LottiePackage(),
+      new ReactVideoPackage()
     );
   }
 
