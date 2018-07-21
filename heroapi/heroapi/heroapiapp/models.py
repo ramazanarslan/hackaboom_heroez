@@ -24,7 +24,7 @@ class Shop(models.Model):
 
 
 class Cloth(models.Model):
-    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    shop = models.ForeignKey(Shop, related_name='clothes', on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='cloth_images/', validators=[FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'gif', 'png'])])
     xxl = models.BooleanField()
@@ -40,6 +40,7 @@ class Sound(models.Model):
     title = models.CharField(max_length=100)
     artist = models.CharField(max_length=100)
     sound = models.FileField(upload_to='sounds/')
+    happy = models.BooleanField()
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.artist)
