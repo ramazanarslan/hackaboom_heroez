@@ -172,3 +172,5 @@ heckaboom_app/*.keystore
 
 # Bundle artifact
 *.jsbundle
+
+node_modules/

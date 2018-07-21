@@ -2,9 +2,9 @@ package com.hackaboom_app;
 
 import android.app.Application;
 import com.reactnativenavigation.NavigationApplication;
-import com.airbnb.android.react.lottie.LottiePackage;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.lottie.LottiePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
@@ -47,7 +47,6 @@ public class MainApplication extends NavigationApplication implements ReactAppli
       new VectorIconsPackage(),
       new MapsPackage(),
       new LottiePackage()
-
     );
   }
 

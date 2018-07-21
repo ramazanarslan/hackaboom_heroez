@@ -1,16 +1,16 @@
 import React, {Component} from "react";
 import {
-    View, FlatList
+    View, FlatList, Card, CardItem
 } from "react-native";
 import {
     Container,
-    Text
+    Text, Icon, Right, Left, Body
 } from 'native-base';
 
 import {connect} from "react-redux";
 import {tryGetShops, getShopsReset} from "../../redux/clothes/Actions";
 
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
 
 import styles from "./styles";
 
@@ -26,8 +26,8 @@ class Clothes extends Component
 
         this.state = {
             region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: 41.053655,
+                longitude: 28.991958,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             }
@@ -36,9 +36,9 @@ class Clothes extends Component
 
     componentDidMount()
         {
-        /* const { shopList } = this.props.clothes;
-         if(shopList.length <= 0)
-         this.props.tryGetShops(); */
+        const {shopList} = this.props.clothes;
+        if ( shopList.length <= 0 )
+            this.props.tryGetShops();
         }
 
     componentDidUpdate()
@@ -69,13 +69,20 @@ class Clothes extends Component
                     <MapView
                         style={styles.mapStyle}
                         region={this.state.region}
-                        onRegionChangeComplete={(region) => this.setState({region})}
-                    />
+                        onRegionChangeComplete={(region) => this.setState({region})}>
+                        {shopList.map(item => (
+                            <Marker
+                                key={item.id}
+                                coordinate={{latitude: parseFloat(item.lat), longitude: parseFloat(item.long)}}
+                                title={item.name}
+                            />
+                        ))}
+                    </MapView>
                 </View>
                 <View style={styles.listLayout}>
                     <FlatList
                         data={shopList}
-                        keyExtractor={(item, index) => item.name + "-" + index}
+                        keyExtractor={(item, index) => item.id + "-" + index}
                         renderItem={({item, index}) => this.renderShopListItem(item, index)}
                         ListEmptyComponent={() => this.renderEmptyListItem()}
                     />
@@ -87,8 +94,24 @@ class Clothes extends Component
     renderShopListItem(item, index)
         {
         return (
+
             <View>
-                <Text>{item.name}</Text>
+                <View style={styles.card}>
+
+                     <View style={styles.roundedNameInitials}><Text style={{
+                        color: "#fff",
+                        fontSize: 19,
+                        alignSelf: "center"
+                    }}>{item.name.charAt(0).toUpperCase()}{item.name.charAt(0).toUpperCase()}</Text></View>
+
+
+
+                    <Text style={styles.textname}>{item.name}</Text>
+
+
+                </View>
+
+
             </View>
         );
         }

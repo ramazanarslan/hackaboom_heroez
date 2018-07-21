@@ -54,9 +54,7 @@ const tryGetShopList = function* (action) {
         console.log("getShopListResponse => ", getShopListResponse);
 
         if (getShopListResponse) {
-            const { shopList } = getShopListResponse;
-
-            yield put(getShopsSuccess(shopList));
+           yield put(getShopsSuccess(getShopListResponse));
         }
         else {
             console.log("Getting shop list failed by api. No response !");
