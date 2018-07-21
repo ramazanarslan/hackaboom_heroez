@@ -37,7 +37,9 @@ export default StyleSheet.create({
         elevation: 3
     },
     textname: {
-    marginLeft:5,
+        fontFamily: 'Poppins-Regular',
+
+        marginLeft:5,
         alignSelf: 'center'
     },
     bodyname: {

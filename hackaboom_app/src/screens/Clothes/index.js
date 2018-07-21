@@ -95,13 +95,16 @@ class Clothes extends Component
         {
         return (
 
-            <View>
+            <TouchableOpacity onPress={() => {
+            this.props.navigation.navigate("PropertyDetail", {item});
+            }}>
                 <View style={styles.card}>
 
                      <View style={styles.roundedNameInitials}><Text style={{
                         color: "#fff",
                         fontSize: 19,
-                        alignSelf: "center"
+                        alignSelf: "center",
+                         fontFamily: 'Poppins-Regular'
                     }}>{item.name.charAt(0).toUpperCase()}{item.name.charAt(0).toUpperCase()}</Text></View>
 
 
@@ -112,7 +115,7 @@ class Clothes extends Component
                 </View>
 
 
-            </View>
+            </TouchableOpacity>
         );
         }
 

@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from "react-native";
+
 const deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
@@ -11,12 +12,12 @@ export default StyleSheet.create({
         alignSelf: "center"
     },
     card: {
-    justifyContent:'center',
+        justifyContent: 'center',
 
-        marginLeft:5,
-        marginRight:5,
-        marginBottom:5,
-        marginTop:5,
+        marginLeft: 5,
+        marginRight: 5,
+        marginBottom: 5,
+        marginTop: 5,
         padding: 15,
         borderRadius: 10,
         borderWidth: 1,
@@ -27,4 +28,10 @@ export default StyleSheet.create({
         elevation: 1,
 
     },
+    textSt: {
+        color: 'white', fontSize: 15, fontFamily: 'Poppins-Regular'
+    },
+    textStb: {
+        color: 'white', fontSize: 15, fontFamily: 'Poppins-Regular',fontWeight:'bold'
+    }
 });
