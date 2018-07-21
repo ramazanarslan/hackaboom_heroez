@@ -5,8 +5,10 @@ heroapi/.vscode/
 heroapi/db_dumps/
 heroapi/media/
 
-heckaboom_app/node_modules/
-heckaboom_app/.idea/
+hackaboom_app/node_modules/
+hackaboom_app/.idea/
+hackaboom_app/.vscode/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -122,42 +124,42 @@ venv.bak/
 
 # Xcode
 #
-heckaboom_app/build/
-heckaboom_app/*.pbxuser
+hackaboom_app/build/
+hackaboom_app/*.pbxuser
 !default.pbxuser
-heckaboom_app/*.mode1v3
+hackaboom_app/*.mode1v3
 !default.mode1v3
-heckaboom_app/*.mode2v3
+hackaboom_app/*.mode2v3
 !default.mode2v3
-heckaboom_app/*.perspectivev3
+hackaboom_app/*.perspectivev3
 !default.perspectivev3
-heckaboom_app/xcuserdata
-heckaboom_app/*.xccheckout
-heckaboom_app/*.moved-aside
-heckaboom_app/DerivedData
-heckaboom_app/*.hmap
-heckaboom_app/*.ipa
-heckaboom_app/*.xcuserstate
-heckaboom_app/project.xcworkspace
+hackaboom_app/xcuserdata
+hackaboom_app/*.xccheckout
+hackaboom_app/*.moved-aside
+hackaboom_app/DerivedData
+hackaboom_app/*.hmap
+hackaboom_app/*.ipa
+hackaboom_app/*.xcuserstate
+hackaboom_app/project.xcworkspace
 
 # Android/IntelliJ
 #
-heckaboom_app/build/
-heckaboom_app/.idea
-heckaboom_app/.gradle
-heckaboom_app/local.properties
-heckaboom_app/*.iml
+hackaboom_app/build/
+hackaboom_app/.idea
+hackaboom_app/.gradle
+hackaboom_app/local.properties
+hackaboom_app/*.iml
 
 # node.js
 #
-heckaboom_app/node_modules/
-heckaboom_app/npm-debug.log
-heckaboom_app/yarn-error.log
+hackaboom_app/node_modules/
+hackaboom_app/npm-debug.log
+hackaboom_app/yarn-error.log
 
 # BUCK
-heckaboom_app/buck-out/
+hackaboom_app/buck-out/
 \.buckd/
-heckaboom_app/*.keystore
+hackaboom_app/*.keystore
 
 # fastlane
 #
