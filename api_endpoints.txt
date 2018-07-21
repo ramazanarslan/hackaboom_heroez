@@ -1,0 +1,4 @@
+http://167.99.141.244/shoplist/
+http://167.99.141.244/clothlist
+http://167.99.141.244/soundlist/?happy=False
+http://167.99.141.244/soundlist/?happy=True
