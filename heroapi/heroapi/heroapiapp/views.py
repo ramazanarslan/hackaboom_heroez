@@ -9,6 +9,9 @@ from django.http import Http404
 from django.core.exceptions import ObjectDoesNotExist
 
 
+#// Hero Mode On:
+# Only heroes can handle all views with different HTTP options.
+
 class ClothList(generics.ListCreateAPIView):
     queryset = Cloth.objects.all()
     serializer_class = ClothSerializer
@@ -26,3 +29,5 @@ class SoundList(generics.ListAPIView):
         happy = self.request.query_params.get('happy')
         sounds = Sound.objects.filter(happy=happy)
         return sounds
+
+#// Hero Mode Off
