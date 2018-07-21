@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import {
-    View, FlatList,Image
+    View, FlatList, Image
 } from "react-native";
 
 import {
     Container,
     Content,
     Button,
-    Text,Card,CardItem,Right,Left,Body,Thumbnail,Icon
+    Text, Card, CardItem, Right, Left, Body, Thumbnail, Icon
 } from 'native-base';
 
 import {connect} from "react-redux";
@@ -20,7 +20,7 @@ class ShopDetail extends Component
     render()
         {
         console.log(this.props);
-        const {shopId,shopName} = this.props;
+        const {shopId, shopName} = this.props;
         console.log('ramazan');
         console.log(this.props.clothes.shopList[shopId]);
         const clothList = this.props.clothes.shopList[shopId].clothes;
@@ -45,7 +45,6 @@ class ShopDetail extends Component
         const imageURI = {uri: str};
 
 
-
         const {shopName} = this.props;
 
         return (
@@ -57,7 +56,8 @@ class ShopDetail extends Component
                                 color: "#fff",
                                 fontSize: 19,
                                 alignSelf: "center",
-                                fontFamily: 'Poppins-Regular'
+                                fontFamily: 'Poppins-Regular',
+                                marginLeft: 4
                             }}>{shopName.charAt(0).toUpperCase()}{shopName.charAt(0).toUpperCase()}</Text></View>
                             <Body>
                             <Text>{item.title}</Text>
@@ -71,24 +71,22 @@ class ShopDetail extends Component
                     <CardItem>
                         <Left>
                             <Button transparent>
-                                <Icon active name="thumbs-up" />
-                                <Text style={{fontSize:10}}>12 Likes</Text>
+                                <Icon style={{color: '#23C086'}}
+                                      name="thumbs-up"/>
+                                <Text style={{fontSize: 10, color: 'gray'}}>12 Likes</Text>
                             </Button>
                         </Left>
                         <Body>
                         <Button transparent>
-                            <Icon active name="chatbubbles" />
-                            <Text style={{fontSize:10}}>4 Comments</Text>
+                            <Icon style={{color: '#23C086'}} name="chatbubbles"/>
+                            <Text style={{fontSize: 10, color: 'gray'}}>4 Comments</Text>
                         </Button>
                         </Body>
                         <Right>
-                            <Text style={{fontSize:10}}>11h ago</Text>
+                            <Text style={{fontSize: 10, color: 'gray'}}>1h ago</Text>
                         </Right>
                     </CardItem>
                 </Card>
-
-
-
 
 
             </View>
