@@ -52,13 +52,22 @@ class ShopDetail extends Component
                 <Card>
                     <CardItem>
                         <Left>
-                            <View style={styles.roundedNameInitials}><Text style={{
-                                color: "#fff",
-                                fontSize: 19,
-                                alignSelf: "center",
-                                fontFamily: 'Poppins-Regular',
-                                marginLeft: 4
-                            }}>{shopName.charAt(0).toUpperCase()}{shopName.charAt(0).toUpperCase()}</Text></View>
+                            <View style={styles.roundedNameInitials}>
+
+
+                                <Text style={{
+                                    color: "#fff",
+                                    fontSize: 16,
+                                   marginRight:0,
+                                    marginLeft:0,
+                                    textAlign: 'center',
+                                    alignSelf:'center',
+                                    fontFamily: 'Poppins-Regular',
+
+                                }}>{shopName.charAt(0).toUpperCase()}{shopName.charAt(0).toUpperCase()}</Text>
+
+
+                            </View>
                             <Body>
                             <Text>{item.title}</Text>
                             <Text note>{shopName}</Text>

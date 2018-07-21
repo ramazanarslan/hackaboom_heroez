@@ -132,7 +132,7 @@ class Dashboard extends Component
                                     fontSize: 15,
                                     fontFamily: 'Poppins-Regular'
                                 }}> Perspiration</Text>
-                                <Right><Text style={styles.textStb}> (Sweating) - 2.7 L/h</Text></Right>
+                                <Right><Text style={styles.textStb}>2.7 L/h</Text></Right>
                             </View>
                         </View>
                     </Content>
