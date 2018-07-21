@@ -17,8 +17,8 @@ import {
     ListItem
 } from 'native-base';
 
-import Video from "react-native-video";
 import LottieView from 'lottie-react-native';
+import Sound from 'react-native-sound';
 
 import { tryGetHappy, getHappyReset, tryGetAngry, getAngryReset } from "../../redux/music/Actions";
 import { connect } from "react-redux";
@@ -35,11 +35,14 @@ class Music extends Component {
         super(props);
 
         this.state = {
-            paused: true,
             progress: new Animated.Value(0),
             listStyle: -1,
-            pickedTrack: {}
+            playingMusicId: 0,
+            isMusicPlaying: false
         }
+
+        Sound.setCategory('Playback');
+        this.whoosh = null;
     }
 
     componentDidMount() {
@@ -77,12 +80,6 @@ class Music extends Component {
                     :
                     this.renderList()
                 }
-                <Video
-                    source={{ uri: "http://167.99.141.244/media/sounds/Koop_-_Koop_Island_Blues_Official_Music_Video.mp3" }} // Can be a URL or a local file.
-                    ref={(el) => this.audioEl = el}
-                    paused={this.state.paused}               // Pauses playback entirely.
-                    onLoad={(data) => console.log("audio is loaded.", data)}    // Callback when video loads
-                />
             </Container>
         );
     }
@@ -115,16 +112,35 @@ class Music extends Component {
     }
 
     renderList() {
-        const { musicList } = this.props.music;
-
         return (
             <Content contentContainerStyle={{ flex: 1 }} padder>
-                <FlatList
+                <View style={styles.oneOfThird}>
+                    <Button onPress={() => this.playBackSound()}>
+                        <Icon name={"ios-skip-backward"} style={{ fontSize: 42 }} />
+                    </Button>
+                </View>
+                <View style={styles.oneOfThird}>
+                    {this.whoosh && this.state.isMusicPlaying ?
+                        <Button onPress={() => { this.whoosh.pause(); this.setState({ isMusicPlaying: false }) }}>
+                            <Icon name={"ios-pause"} style={{ fontSize: 42 }} />
+                        </Button>
+                        :
+                        <Button onPress={() => this.playItem()}>
+                            <Icon name={"ios-play"} style={{ fontSize: 42 }} />
+                        </Button>
+                    }
+                </View>
+                <View style={styles.oneOfThird}>
+                    <Button onPress={() => this.playForwardSound()}>
+                        <Icon name={"ios-skip-forward"} style={{ fontSize: 42 }} />
+                    </Button>
+                </View>
+                {/* <FlatList
                     data={musicList}
                     keyExtractor={(item, index) => item.id + "-" + index}
                     renderItem={({ item, index }) => this.renderMusicListItem(item, index)}
                     ListEmptyComponent={() => this.renderEmptyListItem()}
-                />
+                /> */}
             </Content>
         );
     }
@@ -145,14 +161,75 @@ class Music extends Component {
         );
     }
 
-    playItem(item) {
-        this.setState({
-            pickedTrack: {
-                title: item.title,
-                artist: item.artist,
-                audioUrl: item.sound,
-            }
+    playBackSound() {
+        const { musicList } = this.props.music;
+        const { playingMusicId } = this.state;
+        if(playingMusicId === 0)
+            this.setState({isMusicPlaying: true ,playingMusicId: musicList.length - 1});
+        else
+            this.setState({isMusicPlaying: true ,playingMusicId: this.state.playingMusicId - 1});
+
+        this.whoosh.stop(() => {
+            this.whoosh = null;
+            this.playItem();
         });
+    }
+
+    playForwardSound() {
+        const { musicList } = this.props.music;
+        const { playingMusicId } = this.state;
+        if(playingMusicId === musicList.length - 1)
+            this.setState({isMusicPlaying: true ,playingMusicId: 0});
+        else
+            this.setState({isMusicPlaying: true ,playingMusicId: this.state.playingMusicId + 1});
+
+        this.whoosh.stop(() => {
+            this.whoosh = null;
+            this.playItem();
+        });
+    }
+
+    playItem() {
+        const { musicList } = this.props.music;
+        const { playingMusicId } = this.state;
+
+        if (!this.whoosh) {
+            console.log("null sound!");
+            this.whoosh = new Sound(musicList[playingMusicId].sound, null, (error) => {
+                if (error) {
+                    console.log('failed to load the sound', error);
+                    return;
+                }
+                // loaded successfully
+                console.log('duration in seconds: ' + this.whoosh.getDuration() + 'number of channels: ' + this.whoosh.getNumberOfChannels());
+                this.whoosh.play((success) => {
+                    if (success) {
+                        console.log('successfully finished playing');
+                    } else {
+                        console.log('playback failed due to audio decoding errors');
+                        // reset the player to its uninitialized state (android only)
+                        // this is the only option to recover after an error occured and use the player again
+                        this.whoosh.reset();
+                    }
+                });
+                this.setState({ isMusicPlaying: true });
+            });
+        }
+        else {
+            if (this.whoosh._filename) {
+                this.whoosh.play((success) => {
+                    if (success) {
+                        console.log('successfully finished playing');
+                    } else {
+                        console.log('playback failed due to audio decoding errors');
+                        // reset the player to its uninitialized state (android only)
+                        // this is the only option to recover after an error occured and use the player again
+                        this.whoosh.reset();
+                    }
+                });
+                this.setState({ isMusicPlaying: true });
+            }
+        }
     }
 
     renderEmptyListItem() {

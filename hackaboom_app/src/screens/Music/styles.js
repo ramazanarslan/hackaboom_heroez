@@ -10,5 +10,10 @@ export default StyleSheet.create({
         flex: 0.5,
         alignItems: "center",
         justifyContent: "flex-start"
+    },
+    oneOfThird: {
+        flex: 0.33,
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
