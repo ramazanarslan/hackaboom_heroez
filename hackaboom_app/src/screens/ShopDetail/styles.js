@@ -8,7 +8,6 @@ export default StyleSheet.create({
     },
     roundedNameInitials: {
 
-        alignSelf: "center",
         alignItems: "center",
         justifyContent: "center",
         width: 40,
