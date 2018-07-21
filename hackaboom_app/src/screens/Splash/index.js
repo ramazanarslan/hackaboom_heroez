@@ -46,7 +46,7 @@ class Splash extends Component {
             }).catch((error) => {
                 console.error(error);
             });
-        }, 2000);
+        }, 4000);
     }
 
     render() {
