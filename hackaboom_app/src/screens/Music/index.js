@@ -11,7 +11,10 @@ import {
     Card,
     CardItem,
     Icon,
-    Right
+    Right,
+    Left,
+    Body,
+    ListItem
 } from 'native-base';
 
 import Video from "react-native-video";
@@ -35,11 +38,7 @@ class Music extends Component {
             paused: true,
             progress: new Animated.Value(0),
             listStyle: -1,
-            pickedTrack: {
-                title: 'Stressed Out',
-                artist: 'Twenty One Pilots',
-                audioUrl: "https://soundcloud.com/uiceheidd/lucid-dreams-forget-me",
-            }
+            pickedTrack: {}
         }
     }
 
@@ -79,7 +78,7 @@ class Music extends Component {
                     this.renderList()
                 }
                 <Video
-                    source={{ uri: this.state.pickedTrack.audioUrl }} // Can be a URL or a local file.
+                    source={{ uri: "http://167.99.141.244/media/sounds/Koop_-_Koop_Island_Blues_Official_Music_Video.mp3" }} // Can be a URL or a local file.
                     ref={(el) => this.audioEl = el}
                     paused={this.state.paused}               // Pauses playback entirely.
                     onLoad={(data) => console.log("audio is loaded.", data)}    // Callback when video loads 
@@ -121,11 +120,7 @@ class Music extends Component {
         return (
             <Content contentContainerStyle={{ flex: 1 }} padder>
                 <FlatList
-                    data={[{
-                        title: 'Stressed Out',
-                        artist: 'Twenty One Pilots',
-                        audioUrl: "https://soundcloud.com/uiceheidd/lucid-dreams-forget-me",
-                    }]}
+                    data={musicList}
                     keyExtractor={(item, index) => item.id + "-" + index}
                     renderItem={({ item, index }) => this.renderMusicListItem(item, index)}
                     ListEmptyComponent={() => this.renderEmptyListItem()}
@@ -136,16 +131,28 @@ class Music extends Component {
 
     renderMusicListItem(item, index) {
         return (
-            <Card>
-                <CardItem>
+            <ListItem onPress={() => this.playItem(item)}>
+                <Left>
                     <Icon active name="ios-musical-note" />
+                </Left>
+                <Body>
                     <Text>{item.title}</Text>
-                    <Right>
-                        <Icon name="ios-play" size={24} style={{color: "black"}}/>
-                    </Right>
-                </CardItem>
-            </Card>
+                </Body>
+                <Right>
+                    <Icon name="ios-play" size={24} style={{ color: "black" }} />
+                </Right>
+            </ListItem>
         );
+    }
+
+    playItem(item) {
+        this.setState({
+            pickedTrack: {
+                title: item.title,
+                artist: item.artist,
+                audioUrl: item.sound,
+            }
+        });
     }
 
     renderEmptyListItem() {

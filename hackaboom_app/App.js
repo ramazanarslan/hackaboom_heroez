@@ -14,11 +14,13 @@ import Clothes from "./src/screens/Clothes";
 import Dashboard from "./src/screens/Dashboard";
 import Music from "./src/screens/Music";
 import Splash from "./src/screens/Splash";
+import ShopDetail from "./src/screens/ShopDetail";
 
 Navigation.registerComponent('hackaboomapp.Clothes', () => Clothes, store, Provider);
 Navigation.registerComponent('hackaboomapp.Dashboard', () => Dashboard, store, Provider);
 Navigation.registerComponent('hackaboomapp.Music', () => Music, store, Provider);
 Navigation.registerComponent('hackaboomapp.Splash', () => Splash, store, Provider);
+Navigation.registerComponent('hackaboomapp.ShopDetail', () => Splash, store, Provider);
 
 Navigation.startSingleScreenApp({
     screen: {
