@@ -13,13 +13,11 @@ import {
 import { connect } from "react-redux";
 
 class ShopDetail extends Component {
-    static navigatorStyle = {
-        navBarHidden: true,
-    };
-
+    
     render() {
+        console.log(this.props);
         const { shopId } = this.props;
-        const clothList = this.props.clothes.shopeList[shopId];
+        const clothList = this.props.clothes.shopList[shopId];
 
         return (
             <Container>

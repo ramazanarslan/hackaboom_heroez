@@ -10,6 +10,7 @@ import {
 
 import { connect } from "react-redux";
 import { tryGetShops, getShopsReset } from "../../redux/clothes/Actions";
+import {Navigation} from 'react-native-navigation';
 
 import MapView, { Marker } from 'react-native-maps';
 
@@ -88,9 +89,7 @@ class Clothes extends Component {
     renderShopListItem(item, index) {
         return (
 
-            <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate("PropertyDetail", {item});
-            }}>
+            <TouchableOpacity onPress={() => this.goto_shopDetail(item.id)}>
                 <View style={styles.card}>
 
                     <View style={styles.roundedNameInitials}><Text style={{
@@ -117,16 +116,14 @@ class Clothes extends Component {
         );
     }
 
-    goto_shopDetail() {
-        /* this.props.navigator.showLightBox({
-            screen: "hackaboomapp.Splash", // unique ID registered with Navigation.registerScreen
-            style: {
-                backgroundBlur: "dark", // 'dark' / 'light' / 'xlight' / 'none' - the type of blur on the background
-                backgroundColor: "#ff000080", // tint color for the background, you can specify alpha here (optional)
-                tapBackgroundToDismiss: true // dismisses LightBox on background taps (optional)
-            },
-            adjustSoftInput: "resize", // android only, adjust soft input, modes: 'nothing', 'pan', 'resize', 'unspecified' (optional, default 'unspecified')
-        }); */
+    goto_shopDetail(id) {
+        this.props.navigator.push({
+            screen: 'hackaboomapp.ShopDetail', // unique ID registered with Navigation.registerScreen
+            animated: true, // does the push have transition animation or does it happen immediately (optional)
+            animationType: 'slide-down', // 'fade' (for both) / 'slide-horizontal' (for android) does the push have different transition animation (optional)
+            navigatorStyle: { navBarHidden: true }, // override the navigator style for the pushed screen (optional),
+            passProps: {shopId: id}
+          });
     }
 }
 

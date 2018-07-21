@@ -20,7 +20,7 @@ Navigation.registerComponent('hackaboomapp.Clothes', () => Clothes, store, Provi
 Navigation.registerComponent('hackaboomapp.Dashboard', () => Dashboard, store, Provider);
 Navigation.registerComponent('hackaboomapp.Music', () => Music, store, Provider);
 Navigation.registerComponent('hackaboomapp.Splash', () => Splash, store, Provider);
-Navigation.registerComponent('hackaboomapp.ShopDetail', () => Splash, store, Provider);
+Navigation.registerComponent('hackaboomapp.ShopDetail', () => ShopDetail, store, Provider);
 
 Navigation.startSingleScreenApp({
     screen: {
