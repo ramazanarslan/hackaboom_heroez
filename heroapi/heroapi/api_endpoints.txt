@@ -1,0 +1,4 @@
+/shoplist/
+/clothlist
+/soundlist/?happy=False
+/soundlist/?happy=True
